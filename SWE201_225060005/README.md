@@ -1,35 +1,59 @@
-﻿# SWE201 - Film Projesi (Benim İlk Adımlarım!)
+# 🎬 SWE201 - Film Projesi
 
-Merhaba! Bu projeyi, C# dersi kapsamında Nesne Yönelimli Programlamanın (OOP) temellerini öğrenmek için hazırladım. 
-Projemin ana fikri, bir **Film** nesnesini kodda nasıl en düzgün şekilde modelleyebileceğimi göstermekti.
+Bu proje, C# dersinde Nesne Yönelimli Programlama (OOP) temellerini pekiştirmek amacıyla geliştirdiğim basit ama öğretici bir çalışma.  
+Amaç, bir **Film** nesnesini OOP prensiplerine uygun şekilde modellemek ve bu süreçte kapsülleme, kurucular, metotlar gibi kavramları uygulamaktı.
 
-Bu projeyi yaparken, öğrendiğim temel kavramları bolca kullandım.
+---
 
-## Film Sınıfında Neler Yaptım?
+## 🎞 Film Sınıfında Yaptıklarım
 
-`Film` sınıfı, bir filmin tüm bilgilerini düzenli ve kontrollü bir şekilde tutuyor. İşte benim uyguladığım bazı temel özellikler:
+### 🔒 Kapsülleme (Encapsulation)
+Film adı, puanı, süresi ve yönetmeni gibi özellikleri **private** alanlarda tuttum.  
+Bu verilere dışarıdan doğrudan erişim engelleniyor ve yalnızca Property'ler üzerinden kontrollü şekilde erişiliyor.
 
-* **Güvenlik (Kapsülleme):** Filmin adı (`ad`), puanı (`puan`), yönetmeni ve süresi gibi verileri **private** olarak tanımladım. 
-Bu sayede kimse bu verilere dışarıdan kafasına göre müdahale edemiyor. Erişim, yalnızca benim belirlediğim **Properties (Özellikler)** üzerinden yapılıyor.
-* **Puan Kontrolü (Validation):** Özellikle `Puan` özelliğini tasarlarken bir güvenlik kapısı oluşturdum. 
-Eğer puan 0.0'dan küçük veya 10.0'dan büyük girilirse, sistem uyarı veriyor ve puanı otomatik olarak 10.0'a sabitliyor. **Böylece veri bütünlüğünü sağladım.**
-* **Başlangıç Fonksiyonları (Constructors):**
-    * **Boş Kurucu:** Hiç bilgi girmeden bir film nesnesi oluşturmak için varsayılan değerler atayan bir boş kurucu yazdım.
-    * **Parametreli Kurucu:** Tüm temel bilgileri (Ad, Puan, Yönetmen, Süre, Tür, Yıl, Dil) tek bir satırda alıp nesneyi anında başlatan bir kurucu fonksiyon oluşturdum.
+### ⭐ Puan Kontrolü (Validation)
+`Puan` özelliği için bir doğrulama mekanizması ekledim.  
+- Eğer girilen puan **0.0–10.0** aralığında değilse:
+  - Sistem uyarı veriyor  
+  - Puan otomatik olarak **10.0** yapılıyor  
+Bu sayede veri bütünlüğü korunmuş oluyor.
 
-## Eklediğim Fonksiyonellikler (Metotlar)
+### 🧱 Kurucular (Constructors)
+Film sınıfında iki farklı kurucu tanımladım:
+- **Boş Kurucu:** Varsayılan değerlerle bir film nesnesi oluşturur.
+- **Parametreli Kurucu:** Tüm film bilgilerini tek seferde alarak nesneyi hazır hâle getirir.
 
-`Film` nesnemin sadece veri tutmasını istemedim, aynı zamanda bazı işlevleri de yerine getirmesini sağladım:
+---
 
-1.  **`PuanArtir(miktar)`:** Filmin puanını artırmak için yazdığım bir metot. (Bu metot bile, puanın 10.0'u geçmeyeceğini kontrol eden `Puan` özelliğini kullanıyor!)
-2.  **`SureArttir(ekSure)`:** Filmin süresine ek dakika eklemek için basit bir metot.
-3.  **`SuresiSaatDakika()`:** Bu benim en sevdiğim ekleme! Filmin toplam süresini (dakika) alıp, bunu daha okunabilir bir format olan **"X saat Y dakika"** şeklinde döndüren pratik bir metot geliştirdim.
-4.  **`ToString()` Override:** Nesneyi ekrana yazdırdığımda tüm bilgilerin dağınık değil, tek ve düzenli bir satırda görünmesi için `ToString()` metodunu yeniden yazdım (override ettim).
+## ⚙️ Eklediğim Metotlar
 
-## Proje Akışı
+### 🎚 `PuanArtir(miktar)`
+Filmin puanını artırır. Artış sonrasında puan 10’u geçemez çünkü kontrol yine `Puan` özelliği tarafından yapılır.
 
-Projem, biri sınıf tanımını (Film), diğeri ise test kodlarını (`Main` fonksiyonu) içeren iki ana bölümden oluşuyor. **`Program.cs`** dosyasındaki `Main` fonksiyonunda:
+### ⏱ `SureArttir(ekSure)`
+Film süresine ekstra dakika ekler.
 
-* Farklı kurucular kullanarak film nesneleri oluşturdum.
-* Bu nesneler üzerinde `PuanArtir` ve `SureArttir` gibi metotları test ettim.
-* Özellikle kontrollü `Puan` özelliğimin nasıl çalıştığını göstermek için sınırdan büyük değerleri denedim.
+### ⏳ `SuresiSaatDakika()`
+Filmin süresini dakika cinsinden alır ve şu formatta geri döner:
+
+📌 **“X saat Y dakika”**
+
+### 📝 `ToString()` Override
+Film nesnesi ekrana yazdırıldığında tüm bilgilerin düzenli bir şekilde görünmesi için `ToString()` metodunu yeniden tanımladım.
+
+---
+
+## 🚀 Proje Akışı
+
+Proje iki ana kısımdan oluşuyor:
+
+1. **Film.cs** – Film sınıfının tanımı
+2. **Program.cs (Main)** – Film nesnelerinin test edildiği bölüm
+
+Main içinde şunları yaptım:
+- Farklı kurucularla film nesneleri oluşturdum.
+- `PuanArtir` ve `SureArttir` metotlarını test ettim.
+- Özellikle puan doğrulamasının çalıştığını göstermek için sınır dışı puan değerlerini denedim.
+
+---
+
