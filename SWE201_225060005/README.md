@@ -1,1 +1,104 @@
-Elbette, harika işinizi daha da ilgi çekici bir Markdown formatında yeniden düzenledim. Bu, projenizin GitHub veya benzeri platformlardaki README'si için mükemmel olacaktır!🎬 Film Projesi - SWE201 | Nesne Yönelimli Programlamaya GirişMerhaba! Bu proje, C# dersi kapsamında Nesne Yönelimli Programlama (OOP) prensiplerini uygulamalı olarak öğrenmek için hazırladığım ilk adımdır.Projenin temel amacı, gerçek dünyadan bir varlık olan Film'i, C# kodunda ne kadar düzenli, güvenli ve işlevsel bir şekilde modelleyebileceğimi göstermekti.📽️ Film Sınıfında Kullandığım Temel OOP KavramlarıFilm sınıfı, bir filmin tüm bilgilerini (Ad, Puan, Yönetmen vb.) düzenli ve kontrollü bir şekilde tutuyor. İşte uyguladığım kilit özellikler:🔒 Kapsülleme (Encapsulation) ve Veri GüvenliğiVerilerin Korunması: Filmin adı (ad), puanı (puan), yönetmeni ve süresi gibi verileri private olarak tanımladım.Kontrollü Erişim: Bu private verilere dışarıdan erişim ve müdahale, yalnızca benim belirlediğim kurallara sahip olan Properties (Özellikler) üzerinden yapılıyor.✅ Puan Kontrolü (Validation)Özellikle Puan özelliğini tasarlarken bir güvenlik mekanizması (validation) oluşturdum:Kural: Eğer girilen puan $0.0$'dan küçük veya $10.0$'dan büyükse, sistem uyarı verir ve puanı otomatik olarak $10.0$'a sabitler. Bu sayede veri bütünlüğünü garantiledim.⚙️ Başlangıç Fonksiyonları (Constructors)Bir Film nesnesini hayata geçirmek için iki farklı kurucu (constructor) tanımladım:Boş Kurucu: Hiç bilgi girmeden bir film nesnesi oluşturmak için varsayılan değerler atar.Parametreli Kurucu: Tüm temel bilgileri (Ad, Puan, Yönetmen, Süre, Tür, Yıl, Dil) tek bir satırda alarak nesneyi anında başlatır.🚀 Eklediğim Akıllı Fonksiyonellikler (Metotlar)Film nesnemin sadece veri tutmasını değil, aynı zamanda bazı işlevleri de yerine getirmesini sağladım:PuanArtir(miktar): Filmin puanını belirlenen miktar kadar artırmak için yazdığım metot. (Bu metot bile, puanın $10.0$'u geçmeyeceğini kontrol eden Puan özelliğini kullanır!)SureArttir(ekSure): Filmin toplam süresine (dakika) ek dakika ekleyen basit bir metot.SuresiSaatDakika(): Pratik ve okunabilir bir dönüşüm: Filmin toplam süresini (dakika) alıp, bunu daha okunabilir bir format olan "X saat Y dakika" şeklinde döndüren metot.ToString() Override: Nesneyi ekrana yazdırdığımda, tüm bilgilerin dağınık değil, tek ve düzenli bir çıktı olarak görünmesi için bu temel metodu yeniden yazdım.🧪 Proje Akışı ve Testler (Program.cs)Projem, biri sınıf tanımını (Film), diğeri ise test kodlarını içeren iki ana bölümden oluşuyor. Program.cs dosyasındaki Main fonksiyonunda:Farklı kurucular kullanarak film nesneleri oluşturdum.Bu nesneler üzerinde PuanArtir ve SureArttir gibi metotları test ettim.Özellikle kontrollü Puan özelliğimin nasıl çalıştığını göstermek için sınırdan büyük (> 10.0) değerleri denedim ve sistemin başarılı bir şekilde $10.0$'a sabitlediğini doğruladım.
+# SWE201 – Film Sınıfı Projesi
+
+Bu proje, C# dersinde öğrenilen Nesne Yönelimli Programlama (OOP) kavramlarını uygulamalı bir örnek üzerinden pekiştirmek amacıyla geliştirilmiştir. Oluşturulan yapı, bir **Film** nesnesinin gerçek hayattaki özelliklerini yazılım ortamında doğru, güvenli ve yönetilebilir bir biçimde temsil etmeyi hedefler.
+
+---
+
+## 1. Projenin Amacı
+
+Projenin temel hedefi; OOP’nin dört ana prensibi olan **kapsülleme**, **soyutlama**, **kurucularla nesne oluşturma**, **metotlarla davranış kazandırma** gibi kavramları tek bir sınıf üzerinde toplu olarak uygulamaktır.
+
+Film sınıfı; film adı, puanı, yönetmeni, süresi, türü, dili ve yılı gibi özellikleri temsil eden, bunun yanında bu özellikler üzerinde işlem yapmaya izin veren yapılar içerir.
+
+---
+
+## 2. Kullanılan OOP Kavramları
+
+### **Kapsülleme (Encapsulation)**
+Film sınıfının temel bilgileri (*ad, puan, yönetmen, süre*) doğrudan dışarıdan erişilemeyecek şekilde saklanır.  
+Bu bilgilere erişim yalnızca **Property**’ler üzerinden sağlanır. Bu sayede veri güvenliği korunur ve dışarıdan kontrolsüz değişiklik yapılması engellenir.
+
+---
+
+### **Veri Doğrulama (Validation) - Puan Kontrolü**
+Puan özelliği, sınıfa eklenen en önemli güvenlik mekanizmasıdır.  
+Girilen puan sadece **0.0 ile 10.0** arasında olabilir.
+
+- 10’dan büyük değerlerde puan otomatik olarak **10** yapılır.
+- 0’dan küçük değerlerde puan otomatik olarak **0** yapılır.
+- Uygunsuz bir giriş olduğunda kullanıcı bilgilendirilir.
+
+Bu özellik, veri bütünlüğü sağlamak için tasarlanmıştır.
+
+---
+
+### **Kurucular (Constructors)**
+
+Sınıf içinde iki farklı kurucu (constructor) bulunmaktadır:
+
+1. **Boş Kurucu:**  
+   Nesne hiçbir bilgi verilmeden oluşturulduğunda varsayılan değerler atanır.
+
+2. **Parametreli Kurucu:**  
+   Filmle ilgili tüm bilgileri tek seferde alarak nesneyi oluşturur.  
+   Bu yöntem, kullanım kolaylığı sağlar ve tekrar eden kod ihtiyacını ortadan kaldırır.
+
+---
+
+### **Davranış Metotları**
+
+Film nesnesine belirli işlevler kazandırmak için çeşitli metotlar tanımlanmıştır:
+
+- **PuanArtir(miktar):**  
+  Filmin puanını artıran bir metot.  
+  Artış işlemi, yine puan doğrulama kurallarına uygun şekilde gerçekleştirilir.
+
+- **SureArttir(ekSure):**  
+  Film süresine belirtilen dakika kadar ekleme yapar.
+
+- **SuresiSaatDakika():**  
+  Film süresini daha okunabilir bir formata çevirir:  
+  *“X saat Y dakika”*
+
+- **ToString() Override:**  
+  Film nesnesi ekrana yazdırıldığında tüm bilgilerin düzenli ve tek satırda görünmesini sağlar.
+
+---
+
+## 3. Programın Çalışma Mantığı
+
+**Program.cs** içinde Film sınıfının farklı şekillerde nasıl kullanılabileceği gösterilmiştir:
+
+- Varsayılan kurucu ile nesne oluşturma.
+- Parametreli kurucu ile tüm bilgileri tek adımda girme.
+- Puan artırma, süre artırma gibi metotların test edilmesi.
+- Yönetmen değiştirme örneği.
+- LINQ kullanarak film listesinden belirli özelliklere göre filtreleme yapılması.
+- Puan doğrulama mekanizmasının sınanması (10’dan büyük puan girilmesi).
+
+Tüm nesneler, `ToString()` metodu sayesinde ekranda düzenli ve anlaşılır biçimde görüntülenir.
+
+---
+
+## 4. Projenin Kazanımları
+
+Bu proje ile:
+
+- OOP’nin temelleri gerçek bir örnek üzerinde uygulanmış,
+- Property kullanımı ve veri doğrulama mantığı geliştirilmiş,
+- Kurucuların avantajları görülmüş,
+- Listeler ve LINQ ile basit sorgulamalar yapılmış,
+- Sınıfa ait davranışların nasıl tanımlandığı öğrenilmiştir.
+
+Sınıf yapısı hem okunabilir hem genişletilebilir olacak şekilde tasarlanmıştır.  
+İstenildiğinde yeni özellik veya metot eklemek oldukça kolaydır.
+
+---
+
+## 5. Sonuç
+
+Bu çalışma, OOP prensiplerini hem teorik hem pratik açıdan anlamayı kolaylaştıran sade ama işlevsel bir örnek sunar.  
+Bir film nesnesinin gerçek hayattaki özelliklerinin yazılım ortamında nasıl temsil edilebileceği başarılı şekilde gösterilmiştir.
+
+---
+
